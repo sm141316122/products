@@ -10,8 +10,9 @@ def read_file(filename, products):
 			data = line.strip().split(",")
 			products.append(data)
 			if "商品" not in line:
+				if "現在日期" in line:
+					products[1][1] = str(datetime.datetime.now()).split(" ")[0]
 				print(data)
-	products[1][1] = str(datetime.datetime.now()).split(" ")[0]
 
 	return products
 
@@ -24,7 +25,8 @@ def user_input(products):
 		price = int(input("請輸入價格: "))
 		products.append([name, price])
 		products[2][1] = int(products[2][1]) - price
-	print(products)
+	for p in products:
+		print(p)
 
 	return products
 
